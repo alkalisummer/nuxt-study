@@ -1,11 +1,26 @@
 <template>
-  <Tutorial/>
+  <div>
+    <ChildComponent1 :text="text" @msg-handler="msgHandler"></ChildComponent1>
+    <ChildComponent2></ChildComponent2>
+  </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { Component, Vue } from "vue-property-decorator";
+import ChildComponent1 from "./child_component1.vue";
+import ChildComponent2 from "./child_component2.vue";
 
-export default Vue.extend({
-  name: 'IndexPage'
+@Component({
+  components: {
+    ChildComponent1,
+    ChildComponent2,
+  },
 })
+export default class Index extends Vue {
+  private text = "Hello Wolrd!!";
+
+  msgHandler(msg: string) {
+    console.log("msg :" + msg);
+  }
+}
 </script>
